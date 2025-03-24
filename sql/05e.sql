@@ -18,3 +18,23 @@
  * ```
  * This problem should be solved by a self join on the "film_category" table.
  */
+
+SELECT similar_movies.title
+FROM (
+  SELECT category.category_id, film.title
+  FROM category
+  JOIN film_category USING (category_id)
+  JOIN film USING (film_id)
+  WHERE film.title = 'AMERICAN CIRCUS'
+) AS american_circus_categories
+LEFT JOIN (
+  SELECT category.category_id, film.title
+  FROM category
+  JOIN film_category USING (category_id)
+  JOIN film USING (film_id)
+) AS similar_movies
+  ON american_circus_categories.category_id = similar_movies.category_id
+GROUP BY similar_movies.title
+HAVING COUNT(*) >= 2
+ORDER BY similar_movies.title;
+

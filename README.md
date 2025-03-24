@@ -8,8 +8,8 @@
 
 1. Build the containers and enter psql with the following commands.
     ```
-    $ docker-compose up -d --build
-    $ docker-compose exec pg psql
+    $ docker compose up -d --build
+    $ docker compose exec pg psql
     ```
 
 1. We will now observe some problems with the pagila dataset,
